@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>epub reader</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="vendor/jszip.min.js"></script>
+  <script defer src="js/storage.js"></script>
+  <script defer src="js/epub-parser.js"></script>
+  <script defer src="js/tts.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">epub<span class="logo-accent">reader</span></div>
+    <button id="btn-theme" class="btn-small" aria-label="toggle theme"></button>
+  </header>
+  <main>
+    <section id="view-library" class="view active">
+      <div id="dropzone" tabindex="0" role="button" aria-label="add an epub">
+        <div class="dropzone-icon">&#128214;</div>
+        <div class="dropzone-text">drop an .epub here, or click to browse</div>
+        <div class="dropzone-sub">parsed locally in your browser &mdash; nothing is uploaded</div>
+        <div id="dropzone-error" class="message hidden"></div>
+      </div>
+      <div id="library-list" class="library-list"></div>
+      <div id="library-empty" class="hint hidden">no books yet &mdash; add an epub to get started</div>
+    </section>
+    <section id="view-reader" class="view">
+      <div class="reader-toolbar">
+        <button id="btn-back" class="btn-small">&larr; library</button>
+        <div class="reader-toolbar-info">
+          <span id="reader-title"></span>
+          <span id="chapter-indicator" class="dim"></span>
+        </div>
+        <span class="reader-toolbar-spacer"></span>
+      </div>
+      <div id="reader-scroll">
+        <div id="reader-text"></div>
+        <div id="reader-end-hint" class="hint hidden"></div>
+      </div>
+      <div class="controls">
+        <button id="btn-play" class="btn btn-primary">play</button>
+        <button id="btn-stop" class="btn-small" disabled>stop</button>
+        <span class="controls-sep"></span>
+        <button id="btn-prev" class="btn-small">&larr; chapter</button>
+        <button id="btn-next" class="btn-small">chapter &rarr;</button>
+        <span class="controls-sep"></span>
+        <select id="rate-select" aria-label="speed"></select>
+        <select id="voice-select" aria-label="voice"></select>
+      </div>
+      <div class="hint controls-hint">space &mdash; play/pause &middot; arrows &mdash; chapters/sentences &middot; esc &mdash; stop</div>
+    </section>
+  </main>
+  <input type="file" id="file-input" accept=".epub" class="hidden" multiple>
+</body>
+</html>
